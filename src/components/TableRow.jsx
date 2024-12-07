@@ -60,7 +60,7 @@ const TableRowComponent = ({ row, onValueChange, level }) => {
         </TableCell>
         <TableCell
           align="right"
-          sx={{ color: row.variance >= 0 ? "green" : "red" }}
+          sx={{ color: row.variance.toFixed(2) >= 0 ? "green" : "red" }}
         >
           {row.variance.toFixed(2)}%
         </TableCell>

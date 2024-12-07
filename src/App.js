@@ -53,11 +53,22 @@ const App = () => {
   ]);
 
   const updateValue = (id, newValue, isPercentage) => {
+    if (!newValue) {
+      alert("Please enter a value before updating.");
+      return;
+    }
+
     const updateRows = (rows) => {
       return rows.map((row) => {
         if (row.id === id) {
           const currentValue = row.value;
           const originalValue = row.originalValue;
+
+          // Input validation
+          if (isNaN(newValue)) {
+            alert("Please enter a valid number.");
+            return row; // No change
+          }
 
           row.value = isPercentage
             ? currentValue * (1 + newValue / 100)
@@ -89,7 +100,6 @@ const App = () => {
       });
     };
 
-    // Update state with the modified rows
     setData(updateRows(data));
   };
 
